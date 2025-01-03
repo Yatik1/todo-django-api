@@ -10,7 +10,7 @@ from .serializer import TodoSerializer
 
 # Create your views here.
 def start_app(request):
-    return HttpResponse("Welcome to the Todo App")
+    return HttpResponse({"message":"This is api start route for todo app"})
 
 # get request to fetch all todos from the database
 @api_view(["GET"])
@@ -31,3 +31,26 @@ def post_todo(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# put request to update the todo details in the database
+@api_view(["PUT"])
+def update_todo(request,pk):
+    try:
+        todo = TodoItem.objects.get(pk=pk)
+    except:
+        return Response({"message":"Todo not found"}, status=status.HTTP_404_NOT_FOUND)
+    
+    serializer = TodoSerializer(todo, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data,status=status.HTTP_200_OK)
+    return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(["DELETE"])
+def delete_todo(request,pk):
+    try:
+        todo = TodoItem.objects.get(pk=pk)
+    except:
+        return Response({'message':'Todo not found'},status=status.HTTP_404_NOT_FOUND)
+    
+    todo.delete()
+    return Response({'message':"Todo deleted successfullt"},status=status.HTTP_200_OK)
