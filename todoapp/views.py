@@ -12,6 +12,7 @@ from .serializer import TodoSerializer
 def start_app(request):
     return HttpResponse("Welcome to the Todo App")
 
+# get request to fetch all todos from the database
 @api_view(["GET"])
 def all_todos(request):
     todos = TodoItem.objects.all()
@@ -20,6 +21,7 @@ def all_todos(request):
     serializer = TodoSerializer(todos, many=True)
     return Response(serializer.data , status=status.HTTP_200_OK)
 
+# post request to add new todo in the database
 @api_view(["POST"])
 def post_todo(request):
     serializer = TodoSerializer(data=request.data)
@@ -27,3 +29,5 @@ def post_todo(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
