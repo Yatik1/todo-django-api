@@ -1,16 +1,13 @@
-Package             Version
-------------------- ----------
-asgiref             3.8.1
-certifi             2024.12.14
-distlib             0.3.9
-Django              5.1.4
-djangorestframework 3.15.2
-filelock            3.16.1
-packaging           24.2
-pip                 24.3.1
-pipenv              2024.4.0
-platformdirs        4.3.6
-setuptools          75.6.0
-sqlparse            0.5.3
-virtualenv          20.28.1
-whitenoise          6.8.2
+asgiref==3.8.1
+certifi==2024.12.14
+distlib==0.3.9
+Django==5.1.4
+djangorestframework==3.15.2
+filelock==3.16.1
+packaging==24.2
+pipenv==2024.4.0
+platformdirs==4.3.6
+setuptools==75.6.0
+sqlparse==0.5.3
+virtualenv==20.28.1
+whitenoise==6.8.2
