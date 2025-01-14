@@ -53,4 +53,4 @@ def delete_todo(request,pk):
         return Response({'message':'Todo not found'},status=status.HTTP_404_NOT_FOUND)
     
     todo.delete()
-    return Response({'message':"Todo deleted successfullt"},status=status.HTTP_200_OK)
+    return Response({'message':"Todo deleted successfully"},status=status.HTTP_200_OK)
