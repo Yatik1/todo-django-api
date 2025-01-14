@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            padding: 2rem;
+        }
+        section {
+            margin-bottom: 2rem;
+        }
+        h1{
+            color: white;
+        }
+        h2 {
+            color: #007bff;
+        }
+        pre {
+            background-color: #eef;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #007bff;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Todo API Documentation</h1>
+        <p>A simple API for managing Todo list using CRUD operations</p>
+    </header>
+    <main>
+        <section>
+            <h2>Overview</h2>
+            <p>The Todo API allows you to create, read, update, and delete Todo list. Each Todo item has the following attributes:</p>
+            <ul>
+                <li><strong>title</strong> (string): The title of the Todo item.</li>
+                <li><strong>description</strong> (string, optional): Additional details about the Todo item.</li>
+                <li><strong>created_at</strong> (datetime): The timestamp when the Todo was created.</li>
+                <li><strong>isCompleted</strong> (boolean): Indicates whether the Todo is completed.</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Endpoints</h2>
+
+            <h3>1. Retrieve All Todos</h3>
+            <p><strong>GET : </strong> /api/todo/all</p>
+            <pre>
+Request:
+GET /api/todo/all
+
+Response:
+[
+    {
+        "id": 1,
+        "title": "Buy groceries",
+        "description": "Milk, eggs, and bread",
+        "created_at": "2025-01-12T15:30:00Z",
+        "isCompleted": false
+    }
+]
+            </pre>
+
+            <h3>2. Create a New Todo</h3>
+            <p><strong>POST : </strong> /api/todo/post</p>
+            <pre>
+Request:
+POST /api/todo/post/
+Content-Type: application/json
+
+{
+    "title": "Go to the gym",
+    "description": "Morning workout session"
+}
+
+Response:
+{
+    "id": 2,
+    "title": "Go to the gym",
+    "description": "Morning workout session",
+    "created_at": "2025-01-12T16:00:00Z",
+    "isCompleted": false
+}
+            </pre>
+
+            <h3>3. Update a Todo</h3>
+            <p><strong>PUT : </strong> /api/todo/update/&lt;id&gt;/</p>
+            <pre>
+Request:
+PUT /api/todo/update/1/
+Content-Type: application/json
+
+{
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread, and butter",
+    "isCompleted": true
+}
+
+Response:
+{
+    "id": 1,
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread, and butter",
+    "created_at": "2025-01-12T15:30:00Z",
+    "isCompleted": true
+}
+            </pre>
+
+            <h3>4. Delete a Todo</h3>
+            <p><strong>DELETE : </strong> /api/todo/delete/&lt;id&gt;/</p>
+            <pre>
+Request:
+DELETE /api/todo/delete/1/
+
+Response:
+{
+    "message": "Todo deleted successfully."
+}
+            </pre>
+        </section>
+    </main>
+</body>
+</html>
