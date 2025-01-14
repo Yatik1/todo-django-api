@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#4j2nj1_0^p5i$bz7jojingc)y=p=()_zqo+!g4a=wo26pe5zk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['localhost',"todo-django-api-y8py.onrender.com"]
+ALLOWED_HOSTS = ['127.0.0.1','localhost',"todo-django-api-y8py.onrender.com"]
 
 
 # Application definition
@@ -58,7 +58,7 @@ ROOT_URLCONF = 'productive.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
