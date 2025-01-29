@@ -33,17 +33,18 @@ def post_todo(request):
 
 # put request to update the todo details in the database
 @api_view(["PUT"])
-def update_todo(request,pk):
+def update_todo(request, pk):
     try:
         todo = TodoItem.objects.get(pk=pk)
-    except:
-        return Response({"message":"Todo not found"}, status=status.HTTP_404_NOT_FOUND)
-    
-    serializer = TodoSerializer(todo, data=request.data)
+    except TodoItem.DoesNotExist:
+        return Response({"message": "Todo not found"}, status=status.HTTP_404_NOT_FOUND)
+
+    serializer = TodoSerializer(todo, data=request.data, partial=True)  # Allow partial updates
     if serializer.is_valid():
         serializer.save()
-        return Response(serializer.data,status=status.HTTP_200_OK)
-    return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["DELETE"])
 def delete_todo(request,pk):
